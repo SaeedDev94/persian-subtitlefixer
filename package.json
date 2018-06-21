@@ -2,6 +2,7 @@
   "name": "persian_subtitlefixer",
   "version": "1.0.0",
   "description": "fix persian subtitle encoding",
+  "repository": "Saeed-Pooyanfar/persian_subtitlefixer",
   "main": "index.js",
   "preferGlobal": true,
   "bin": {
