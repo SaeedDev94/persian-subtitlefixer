@@ -1,0 +1,23 @@
+{
+  "name": "persian_subtitlefixer",
+  "version": "1.0.0",
+  "description": "fix persian subtitle encoding",
+  "main": "index.js",
+  "preferGlobal": true,
+  "bin": {
+    "subtitlefixer": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "subtitle",
+    "persian",
+    "encoding"
+  ],
+  "author": "saeed_pooyanfar",
+  "license": "ISC",
+  "dependencies": {
+    "iconv-lite": "^0.4.23"
+  }
+}
