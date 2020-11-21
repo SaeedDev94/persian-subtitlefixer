@@ -1,30 +1,50 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var path = require('path');
-var iconv = require('iconv-lite');
-if (typeof process.argv[2] === 'undefined') {
-	return console.log('usage: subtitlefixer subtitle.srt [fixed_subtitle.str]');
-}
-var subtitlePath = process.argv[2];
-if (!path.isAbsolute(subtitlePath)) {
-	subtitlePath = process.cwd() + '/' + subtitlePath;
-}
-try {
-	fs.accessSync(subtitlePath, fs.constants.F_OK);
-} catch (err) {
-	return console.log('subtitle not found!');
-}
-if (path.extname(subtitlePath) !== '.srt') {
-	return console.log('file format must be srt!');
-}
-var content = fs.readFileSync(subtitlePath);
-content = iconv.decode(content, 'windows-1256');
-if (typeof process.argv[3] !== 'undefined') {
-	var subtitleName = process.argv[3];
-}
-else {
-	var subtitleName = subtitlePath.split("/").pop();
-	subtitleName = 'fixed_' + subtitleName;
-}
-fs.writeFileSync(subtitleName, content);
+const fs = require('fs');
+const path = require('path');
+const iconv = require('iconv-lite');
+
+const subtitlePath = process.argv[2];
+const fixedName = process.argv[3];
+
+const cli = {
+  fixedName,
+  validate: function () {
+    // arg
+    if (!subtitlePath) {
+      console.log('Usage: subtitlefixer subtitle.srt [fixed_name.str]');
+      return false;
+    }
+    // path
+    if (!fs.existsSync(subtitlePath)) {
+      console.log('Subtitle not found!');
+      return false;
+    }
+    // extension
+    if (path.extname(subtitlePath) !== '.srt') {
+      console.log('Subtitle must be srt!');
+      return false;
+    }
+    return true;
+  },
+  setFixedName: function () {
+    if (!this.fixedName) {
+      const subtitleName = subtitlePath.split('/').pop();
+      this.fixedName = `fixed_${subtitleName}`;
+    }
+  },
+  fixSubtitle: function () {
+    const fixedContent = iconv.decode(fs.readFileSync(subtitlePath), 'windows-1256');
+    fs.writeFileSync(this.fixedName, fixedContent);
+    console.log(`Fixed:`, this.fixedName);
+  },
+  run: function () {
+    if (!this.validate()) {
+      return;
+    }
+    this.setFixedName();
+    this.fixSubtitle();
+  }
+};
+
+cli.run();

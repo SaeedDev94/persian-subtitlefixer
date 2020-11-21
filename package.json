@@ -1,24 +1,25 @@
 {
   "name": "persian_subtitlefixer",
-  "version": "1.0.2",
   "description": "fix persian subtitle encoding",
+  "keywords": [
+    "subtitle",
+    "persian",
+    "encoding"
+  ],
+  "version": "2.0.0",
+  "license": "MIT",
+  "author": {
+    "email": "saeedp47@gmail.com",
+    "name": "SaeedPooyanfar",
+    "url": "https://github.com/Saeed-Pooyanfar"
+  },
   "repository": "Saeed-Pooyanfar/persian_subtitlefixer",
   "main": "index.js",
   "preferGlobal": true,
   "bin": {
     "subtitlefixer": "index.js"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "subtitle",
-    "persian",
-    "encoding"
-  ],
-  "author": "saeed_pooyanfar",
-  "license": "ISC",
   "dependencies": {
-    "iconv-lite": "^0.4.23"
+    "iconv-lite": "^0.6.2"
   }
 }
