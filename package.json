@@ -13,7 +13,7 @@
     "name": "SaeedPooyanfar",
     "url": "https://github.com/Saeed-Pooyanfar"
   },
-  "repository": "Saeed-Pooyanfar/persian_subtitlefixer",
+  "repository": "Saeed-Pooyanfar/persian-subtitlefixer",
   "main": "index.js",
   "preferGlobal": true,
   "bin": {
